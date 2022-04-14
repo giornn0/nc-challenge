@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AutheticathedGuard } from './guards/autheticathed.guard';
-import { HasTokenGuard } from './guards/has-token.guard';
 import { LoginComponent } from './views/login/login.component';
+import { RouteEnums } from './constants/route.enums';
 
 export const routes: Routes = [
   {
     path: 'login',
-    canActivate:[HasTokenGuard],
     component: LoginComponent,
+    redirectTo:RouteEnums.Users,
     data: {
       title: 'Login Page',
     },
   },
   {
-    path: 'users',
-    canActivate:[AutheticathedGuard],
+    path: RouteEnums.Users,
     loadChildren: () =>
       import('src/app/views/users/users.module').then((mod) => mod.UsersModule),
   },
