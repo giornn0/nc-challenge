@@ -1,4 +1,4 @@
-export interface User{
+export interface Member{
   firstName: string;
   lastName: string;
   address: string;

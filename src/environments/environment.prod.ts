@@ -1,5 +1,5 @@
 export const environment = {
-  apiUrl:'http://localhost:3000',
+  apiUrl:'http://[::]:8081',
   production: true,
   credentials: {
     username:'sarah',

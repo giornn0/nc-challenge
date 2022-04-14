@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GetAllUsersResolver } from 'src/app/resolvers/users/get-all-users.resolver';
+import { GetTokenResolver } from 'src/app/resolvers/auth/get-token.resolver';
+import { GetAllMembersResolver } from 'src/app/resolvers/members/get-all-members.resolver';
 import { MainViewComponent } from './pages/main-view/main-view.component';
 
 const routes: Routes = [
   {
     path:'',
-    resolve:{users:GetAllUsersResolver},
+    resolve:{token:GetTokenResolver},
     component:MainViewComponent
   }
 ];
@@ -15,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class MembersRoutingModule { }

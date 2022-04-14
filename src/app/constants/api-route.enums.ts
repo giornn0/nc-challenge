@@ -1,3 +1,4 @@
 export enum ApiRouteEnums{
-  User='users'
+  Members='members',
+  Auth='auth'
 }

@@ -6,20 +6,19 @@ import { RouteEnums } from './constants/route.enums';
 export const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
-    redirectTo:RouteEnums.Users,
+    redirectTo:RouteEnums.Members,
     data: {
       title: 'Login Page',
     },
   },
   {
-    path: RouteEnums.Users,
+    path: RouteEnums.Members,
     loadChildren: () =>
-      import('src/app/views/users/users.module').then((mod) => mod.UsersModule),
+      import('src/app/views/members/members.module').then((mod) => mod.MembersModule),
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo:RouteEnums.Members,
     pathMatch: 'full',
   },
 ];

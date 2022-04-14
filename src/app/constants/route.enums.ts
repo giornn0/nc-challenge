@@ -1,3 +1,3 @@
 export enum RouteEnums{
-  Users='users'
+  Members='members'
 }
