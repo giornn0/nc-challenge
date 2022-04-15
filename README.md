@@ -32,6 +32,7 @@
     <code>npm install</code>
   </li>
    <li><strong>Levantar</strong> la Aplicación con el siguiente comando<br>
+     *si no se tiene instalado el CLI de Angular: <code>npm install -g @angular/cli</code><br>
      <code>ng serve -o</code>
     <br>
      <small>el '-o' es para abrir automaticamente</small>
