@@ -48,7 +48,14 @@
     <small>(ujna vez termine la compilación se abrira automáticamente)</small>
   </li>
 </ol>
-<hr><br>
+<hr>
+<h2>Demo</h2>
+<div style="position:relative;width:fit-content;height:fit-content;">
+            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/5y6A53x4JTv?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+                <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+            </a>
+        </div>
+<br>
 <h2>Detalles</h2>
 <h3>Cuenta con 8 directorios base</h3><br>
 <ul>
@@ -125,9 +132,8 @@
 <hr>
 <br>
 
-<h3>Algunos detalles</h3>
+<h3>Detalles Extras</h3>
 
-<>
 ```
   <div class="bg-gradient-to-bl main-body-container" >
     <header >
@@ -156,15 +162,18 @@ Para poder cargar la vista antes se cumple la petición por medio del GetTokenRe
   }
 ```
 
-Lo más importante que hay en GetTokenResolver es
+Lo más importante que hay en 
 
+<strong>GetTokenResolver</strong>
 ```
   const body: LogBody = environment.credentials
   return this.authService.login(body).pipe(map(
     logResponse=>(logResponse.token)))
 ```
 
-El body viene hardcodeado por el entorno, aquí se llama al método login del AuthService
+El body viene hardcodeado por el entorno, aquí se llama al método login de
+
+<strong>AuthService</strong>
 
 ```
   login(credentials: LogBody): Observable<LoginResponse>{
@@ -172,10 +181,10 @@ El body viene hardcodeado por el entorno, aquí se llama al método login del Au
   }
 ```
 
-Cómo habrán notado el endpoint está en mayor médida escrito con valores de objetos generales para si en algún momento la ruta de auth por ejemplo cambia y la usamos en varios lugares solo deberíamos cambiarla en el enum/objeto que corresponda
+Cómo habrán notado el endpoint está en mayor médida escrito con valores de objetos generales para si en algún momento la ruta de auth por ejemplo cambia y la usamos en varios lugares solo deberíamos cambiarla en el enum/objeto que corresponda.
 
-Una vez cumplida con éxito se carga el componente MainView
-
+Una vez cumplida con éxito se carga el componente
+<strong>Main View</strong>
 ```
 <--html-->
 <div class="grid grid-cols-2">
@@ -188,4 +197,97 @@ Una vez cumplida con éxito se carga el componente MainView
     </app-table-members>
   </div>
 </div>
+```
+<strong>Form Members</strong><br>
+Acá se uso Reactive Forms, con controles sueltos porque permitió mayor soltura a la hora de hacer las validaciones.<br>
+Los input de string, tienen un cheque de length y de pattern para evitar espacios al inicio y final.<br
+ 
+```
+  lastName = new FormControl('', [
+    Validators.required,
+    Validators.minLength(1),
+    Validators.pattern(/[^\s]+(\s+[^\s]+)*$/),
+  ]);
+```
+Para asegurar la unicidad del input de ssn se pasa un arreglo de los ssn previamente cargados y una vez validado lo ingresado (se hace uso de un mask que permite asegurar el formato ingresado).<br>
+
+```
+this.ssn.valueChanges.subscribe((value) => {
+    if (this.ssn.valid && this.chargedSSN.includes(value)) {
+    this.ssn.setErrors({ notUnique: true });
+    this.cdr.detectChanges();
+  }
+})
+```
+Para chequear la validez del formulario, se itera un arreglo de string que corresponden a los nombres de los controles (acordes a la propiedades del objeto de tipo member) asegurando que todos los controles no contenga errores.<br>
+
+```
+isValid() {
+  return !this.form.every((control) => !this[control].errors);
+}
+```
+Al Apretar save se corre una petición para guardar la data del formulario, enviandola por medio una petición a la API<br>
+  <ul>
+    <li>
+      Si se <strong>carga con éxito</strong> se resetea el formulario, se carga el ssn en el listado respectivo, se emite una alerte de éxito y el member cargado para pushear a la tabla.
+    </li>
+    
+    <li>
+      Si la carga es <strong>errónea</strong> simplemente se emite una alerte de error.
+    </li>
+  </ul><br>
+  
+```
+this.chargedSSN.push(member.ssn as MemberControls.SSN);
+    this.membersService.pushMember(member).subscribe(
+      (res) => {
+        this.savedMember.emit(member);
+        this.reset();
+        this.alertsService.setAlert(
+          succesAlert('New member charged successfully')
+        );
+      },
+      (err) =>
+        this.alertsService.setAlert(
+          errorAlert('Error while trying to save the new member')
+        )
+    ); 
+```
+<strong>Table Members</strong><br>
+Aca simplemente se corre un fetch al cargar el componente para obetener el listado y se activa el debounceTime que se resetea con cada pusheo de nuevos miembros<br>
+
+```
+ngOnInit(): void {
+  this.getList();
+  this.subjectForRefetch.pipe(debounceTime(1200000)).subscribe((_) => {
+    this.getList();
+  });
+  this.refetch();
+}
+```
+```
+getList() {
+  this.searching = true;
+  this.membersService
+    .getMembers()
+    .pipe(
+      finalize(() => {
+        this.refetch();
+        this.searching = false;
+      })
+    )
+    .subscribe(
+      (res) => {
+        this.listMembers = res;
+        const listedSSN = res.map(
+          (member) => member.ssn
+        ) as MemberControls.SSN[];
+        this.chargedSSN.emit(listedSSN);
+      },
+      (err) =>
+        this.alertsService.setAlert(
+          errorAlert('Error while trying to get members list')
+        )
+    );
+}
 ```
