@@ -1,5 +1,4 @@
 <h1 align="center">Challenge para New Combin</h1>
-<hr>
 Applicación front-end hecha con
 -Angular 12
 -Angular Material para los componentes como dialogs, campos de inputs, cards, buttons
