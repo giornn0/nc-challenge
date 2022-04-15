@@ -231,15 +231,14 @@ isValid() {
 }
 ```
 Al Apretar save se corre una petición para guardar la data del formulario, enviandola por medio una petición a la API<br>
-  <ul>
-    <li>
-      Si se <strong>carga con éxito</strong> se resetea el formulario, se carga el ssn en el listado respectivo, se emite una alerte de éxito y el member cargado para pushear a la tabla.
-    </li>
-    
-    <li>
-      Si la carga es <strong>errónea</strong> simplemente se emite una alerte de error.
-    </li>
-  </ul><br>
+<ul>
+  <li>
+   <p> Si se <strong>carga con éxito</strong> se resetea el formulario, se carga el ssn en el listado respectivo, se emite una alerte de éxito y el member cargado para pushear a la tabla.</p>
+  </li>
+  <li>
+    <p>Si la carga es <strong>errónea</strong> simplemente se emite una alerte de error.</p>
+  </li>
+</ul><br>
   
 ```
 this.chargedSSN.push(member.ssn as MemberControls.SSN);
