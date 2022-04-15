@@ -1,7 +1,7 @@
-<table class="table-auto shadow-md">
-  <thead class="bg-gray-200">
+<table class="table-auto shadow-lg rounded-md">
+  <thead class="bg-gray-200 rounded-md">
     <tr>
-      <th class="py-4 text-yellow-800" *ngFor="let prop of displayedColumns">{{prop!='ssn'?(prop | titlecase):(prop|uppercase)}}</th>
+      <th class="py-4 font-bold" *ngFor="let prop of displayedColumns">{{prop!='ssn'?(prop | titlecase):(prop|uppercase)}}</th>
     </tr>
   </thead>
   <tbody>

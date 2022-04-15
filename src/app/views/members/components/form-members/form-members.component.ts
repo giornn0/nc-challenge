@@ -11,6 +11,7 @@ import { Member, MemberControls } from 'src/app/models/member.model';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { MembersService } from 'src/app/services/members/members-service.service';
 import { ssnMask } from 'src/app/utils/masks';
+import { succesAlert } from 'src/app/utils/success.message';
 import { errorAlert } from '../../../../utils/error-message';
 
 @Component({
@@ -73,7 +74,7 @@ export class FormMembersComponent implements OnInit, OnDestroy{
     })
     this.chargedSSN.push(member.ssn as MemberControls.SSN)
     this.membersService.pushMember(member).subscribe(
-      res=>{this.savedMember.emit(member),this.reset()},
+      res=>{this.savedMember.emit(member);this.reset();this.alertsService.setAlert(succesAlert('New member charged successfully'))},
       err=>this.alertsService.setAlert(errorAlert('Error while trying to save the new member'))
     )
   }
