@@ -51,10 +51,14 @@
 <hr>
 <h2>Demo</h2>
 <div style="position:relative;width:fit-content;height:fit-content;">
+  <h3>Video Presentación</h3>
             <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/5y6A53x4JTv?utm_source=embed&utm_medium=embed&utm_campaign=watch">
                 <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
             </a>
-        </div>
+        </div><br>
+ <img width="1200" src="https://github.com/giornn0/nc-challenge/blob/master/src/assets/demo1.png">
+ <br>
+ <img width="1200" src="https://github.com/giornn0/nc-challenge/blob/master/src/assets/demo2.png">
 <br>
 <h2>Detalles</h2>
 <h3>Cuenta con 8 directorios base</h3><br>
