@@ -42,9 +42,7 @@ export class FormMembersComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
     this.subscriptions.add(this.ssn.valueChanges.subscribe(value=>{
-      console.log(this.chargedSSN,this.ssn.value)
       if(this.ssn.valid && this.chargedSSN.includes(value)){
-        console.log(this.chargedSSN,this.ssn.value)
         this.ssn.setErrors({'notUnique':true})
         this.cdr.detectChanges()
       }
