@@ -1,6 +1,12 @@
+export enum MemberControls{
+  Name='name',
+  Address='address',
+  LastName='lastName',
+  SSN='ssn',
+}
 export interface Member{
-  firstName: string;
-  lastName: string;
-  address: string;
-  ssn: string;
+  [MemberControls.Name]: string;
+  [MemberControls.LastName]: string;
+  [MemberControls.Address]: string;
+  [MemberControls.SSN]: string;
 }

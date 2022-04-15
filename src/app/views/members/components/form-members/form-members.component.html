@@ -1,9 +1,70 @@
 <mat-card>
-  <div class="grid grid-rows-5">
-    <div>1</div>
-    <div>1</div>
-    <div>1</div>
-    <div>1</div>
-    <div>1</div>
-  </div>
+  <mat-card-header>
+    <mat-card-title class="px-3">New Member
+      <mat-divider></mat-divider>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <div class="grid grid-rows-4">
+        <div class="p-6">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input [formControl]="name" matInput placeholder="Name">
+            <mat-icon matSuffix>{{
+              name.valid?validControl:
+              name.untouched?''
+                :invalidControl}}
+            </mat-icon>
+            <mat-hint>No spaces at start/end</mat-hint>
+            <mat-error *ngIf="name.invalid">{{getErrorMessage(nameString)}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-6">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input [formControl]="lastName" matInput placeholder="Last Name">
+            <mat-icon matSuffix>{{
+              lastName.valid?validControl:
+              lastName.untouched?''
+                :invalidControl}}
+            </mat-icon>
+            <mat-hint>No spaces at start/end</mat-hint>
+            <mat-error *ngIf="lastName.invalid">{{getErrorMessage(lastNameString)}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-6">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input [formControl]="address" matInput placeholder="Address">
+            <mat-icon matSuffix>{{
+              address.valid?validControl:
+              address.untouched?''
+                :invalidControl}}
+            </mat-icon>
+            <mat-hint>No spaces at start/end</mat-hint>
+            <mat-error *ngIf="address.invalid">{{getErrorMessage(addressString)}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-6 ">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>SSN</mat-label>
+            <input [formControl]="ssn" matInput placeholder="SSN">
+            <mat-icon matSuffix>{{
+              ssn.valid?validControl:
+              ssn.untouched?''
+                :invalidControl}}
+            </mat-icon>
+            <mat-hint>Must be an unique SSN</mat-hint>
+            <mat-error *ngIf="ssn.invalid">{{getErrorMessage(ssnString)}}</mat-error>
+            <mat-error *ngIf="ssn.hasError('notUnique')">{{'Must be an unique SSN'}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="px-10 flex justify-between pb-8">
+      <button class="w-52" (click)="reset()" mat-raised-button color="warn" >Reset</button>
+      <button class="w-52" (click)="onSubmit()" mat-raised-button color="primary" [disabled]="isValid()" >Save</button>
+    </div>
+  </mat-card-footer>
 </mat-card>

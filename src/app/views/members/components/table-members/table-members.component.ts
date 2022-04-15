@@ -1,6 +1,7 @@
+import { ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MembersService } from 'src/app/services/members/members-service.service';
 import { Member } from '../../../../models/member.model';
 
 @Component({
@@ -9,12 +10,16 @@ import { Member } from '../../../../models/member.model';
   styleUrls: ['./table-members.component.scss']
 })
 export class TableMembersComponent implements OnInit {
+  @ViewChild('table')memberTable?: TableMembersComponent;
   @Input()listMembers: Member[]=[]
   displayedColumns: string[] = ['name', 'lastName', 'address', 'ssn'];
 
-  constructor() { }
+  constructor(private membersService: MembersService) { }
 
   ngOnInit(): void {
+    console.log(this.listMembers)
   }
-
+  addNewValidated(newMember: Member){
+    this.listMembers.push(newMember)
+  }
 }

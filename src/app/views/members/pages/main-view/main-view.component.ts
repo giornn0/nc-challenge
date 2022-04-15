@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Member } from 'src/app/models/member.model';
-import { MembersServiceService } from '../../../../services/members/members-service.service';
+import { MembersService } from 'src/app/services/members/members-service.service';
+import { MemberControls } from '../../../../models/member.model';
 
 @Component({
   selector: 'app-main-view',
@@ -12,14 +12,16 @@ import { MembersServiceService } from '../../../../services/members/members-serv
 })
 export class MainViewComponent implements OnInit {
   listMembers: Member[] = []
-  constructor(private activatedRoute: ActivatedRoute, private membersService:MembersServiceService ) { }
+  chargedSSN: MemberControls.SSN[]=[];
+  constructor(private activatedRoute: ActivatedRoute, private membersService:MembersService ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.pipe(first()).subscribe(routeData=>{
       const {token} = routeData;
       localStorage.setItem('token',token)
-      this.membersService.getMembers().subscribe(res=>{return 
+      this.membersService.getMembers().subscribe(res=>{
         this.listMembers =  res
+        this.chargedSSN = res.map(member=>member.ssn as MemberControls.SSN)
       })
     })
   }

@@ -10,14 +10,13 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class MembersServiceService {
+export class MembersService {
   constructor(private http: HttpClient) {}
   getMembers(): Observable<Member[]> {
     return this.http
-      .get<ApiResponse<Member[]>>(`${environment.apiUrl}/api/${ApiRouteEnums.Members}`)
-      .pipe(map((response) =>{
-        console.log(response)
-        return response.data
-      }));
+      .get<Member[]>(`${environment.apiUrl}/api/${ApiRouteEnums.Members}`);
+  }
+  pushMember(body: Member): Observable<any>{
+    return this.http.post(`${environment.apiUrl}/api/${ApiRouteEnums.Members}`,body)
   }
 }
