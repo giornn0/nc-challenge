@@ -21,25 +21,25 @@
     <code>git clone https://github.com/giornn0/nc-challenge.git</code>
   </li>
   <li>En el directorio clonado <strong>instalar dependencias</strong><br>
-    cd cd-challenge <br>
-    npm install
+    <code>cd cd-challenge</code> <br>
+    <code>npm install</code>
   </li>
   <li><strong>Clonar</strong> repositorio de la API<br>
-    git clone https://github.com/newcombin/devskillsadv.git
+    <code>git clone https://github.com/newcombin/devskillsadv.git</code>
   </li>
   <li>En este último directorio clonado <strong>instalar dependencias</strong> (de la API)<br>
-    cd devskillsadv <br>
-    npm install
+    <code>cd devskillsadv</code> <br>
+    <code>npm install</code>
   </li>
    <li><strong>Levantar</strong> la Aplicación con el siguiente comando<br>
-    ng serve -o
+     <code>ng serve -o</code>
     <br>
      <small>el '-o' es para abrir automaticamente</small>
     <br>
      <small>(dentro del directorio que corresponde al front de este repositorio)</small>
   </li>
   <li><strong>Levantar</strong> la API con el siguiente comando<br>
-    npm run serve
+    <code>npm run serve</code>
     <br>
     <small>(dentro del directorio que corresponde a la api)</small>
   </li>
