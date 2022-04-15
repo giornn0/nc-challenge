@@ -1,5 +1,5 @@
-Challenge para New Combin
-
+<h1 align="center">Challenge para New Combin</h1>
+<hr>
 Applicación front-end hecha con
 -Angular 12
 -Angular Material para los componentes como dialogs, campos de inputs, cards, buttons
@@ -8,7 +8,8 @@ Applicación front-end hecha con
 
 Cuenta con 8 directorios base
 
--Constants:
+###Constants:
+
 Aquí simplemente se guardan constantes/enums hardcodeados que puedan llegar a tener un uso en múltiples componentes
 -Core:
 Módulo que brinda los componentes más básicos y generales (que por lo general se usan una sola vez en el app.component.html) en este caso son dos header y footer. Pueden ser modales, sidenavs, asides
@@ -33,8 +34,8 @@ Ahora el árbol empieza en app.component.html
       <app-header></app-header>  // vista del header
     </header>
     <main >
-      <router-outlet></router-outlet> //vista traída por ruta (en este caso una sola, la de members)
-    </main>
+      <router-outlet></router-outlet> //vista traída por ruta 
+    </main>                           //(en este caso una sola, la de members)
     <footer >
       <app-footer></app-footer> //vista del footer
     </footer>
@@ -59,7 +60,8 @@ Lo más importante que hay en GetTokenResolver es
 
 ```
   const body: LogBody = environment.credentials
-  return this.authService.login(body).pipe(map(logResponse=>(logResponse.token)))
+  return this.authService.login(body).pipe(map(
+    logResponse=>(logResponse.token)))
 ```
 
 El body viene hardcodeado por el entorno, aquí se llama al método login del AuthService
@@ -78,10 +80,12 @@ Una vez cumplida con éxito se carga el componente MainView
 ```
 <div class="grid grid-cols-2">
   <div class="px-12 py-8">
-    <app-form-members (savedMember)="addNewMember($event)" [chargedSSN]="chargedSSN"></app-form-members>
+    <app-form-members (savedMember)="addNewMember($event)" [chargedSSN]="chargedSSN">
+    </app-form-members>
   </div>
   <div class="px-12 py-8">
-    <app-table-members #table></app-table-members>
+    <app-table-members #table>
+    </app-table-members>
   </div>
 </div>
 ```
