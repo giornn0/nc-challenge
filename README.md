@@ -8,10 +8,10 @@
     <strong>Angular Material</strong> para los componentes como dialogs, campos de inputs, cards, buttons<br>
   </li>
   <li>
-    <strong>Tailwindcss</strong> para el layout y algunos estilos rápidos en el template<br>
+    <strong>Tailwindcss</strong> para el layout y algunos estilos rápidos del template<br>
   </li>
   <li>
-    <strong>RXJS</strong> para la parte lógica en su mayoría ( al menos dónde fue posible)<br>
+    <strong>RXJS</strong> para la parte lógica en la mayor médida posible<br>
   </li>
 </ul>
 <hr><br>
@@ -44,8 +44,8 @@
     <small>(dentro del directorio que corresponde a la api)</small>
   </li>
    <li><strong>A explorar</strong><br>
-     visite http://localhost:4200
-    <small>(ujna vez termine la compilación se abrira automáticamente)</small>
+     visite http://localhost:4200<br>
+    <small>una vez termine la compilación si se uso el flag '-o' se abrira automáticamente</small>
   </li>
 </ol>
 <hr>
