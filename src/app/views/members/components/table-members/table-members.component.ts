@@ -1,4 +1,6 @@
 import { OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Output } from '@angular/core';
 import {Input,  Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
@@ -15,7 +17,7 @@ import { memberProps } from '../../constants/props-array';
   styleUrls: ['./table-members.component.scss']
 })
 export class TableMembersComponent implements OnInit,OnDestroy {
-
+  @Output()chargedSSN: EventEmitter<MemberControls.SSN[]> = new EventEmitter();
   displayedColumns: MemberControls[] = memberProps
   subjectForRefetch: Subject<boolean> = new Subject();
   searching=false;
@@ -47,7 +49,11 @@ export class TableMembersComponent implements OnInit,OnDestroy {
         this.refetch();
         this.searching=false
       })).subscribe(
-        res=>this.listMembers = res,
+        res=>{
+          this.listMembers = res;
+          const listedSSN =res.map(member=>member.ssn) as MemberControls.SSN[]
+          this.chargedSSN.emit(listedSSN)
+        },
         err=>this.alertsService.setAlert(errorAlert('Error while trying to get members list'))
       )
   }

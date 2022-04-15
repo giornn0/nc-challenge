@@ -3,6 +3,6 @@
     <app-form-members (savedMember)="addNewMember($event)" [chargedSSN]="chargedSSN"></app-form-members>
   </div>
   <div class="px-12 py-8">
-    <app-table-members #table></app-table-members>
+    <app-table-members #table (chargedSSN)="chargedSSN=$event"></app-table-members>
   </div>
 </div>
