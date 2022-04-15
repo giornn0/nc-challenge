@@ -48,7 +48,7 @@
         <div class="p-6 ">
           <mat-form-field class="w-full" appearance="outline">
             <mat-label>SSN</mat-label>
-            <input (keyup)="ssnMask($event)" [formControl]="ssn" matInput placeholder="SSN">
+            <input (keydown)="ssnMask($event)" [formControl]="ssn" matInput placeholder="SSN">
             <mat-icon matSuffix>{{
               ssn.valid?validControl:
               ssn.untouched?''
