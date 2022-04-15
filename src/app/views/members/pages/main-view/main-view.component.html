@@ -1,8 +1,8 @@
 <div class="grid grid-cols-2">
   <div class="px-12 py-8">
-    <app-form-members (savedMember)="listMembers.push($event)" [chargedSSN]="chargedSSN"></app-form-members>
+    <app-form-members (savedMember)="addNewMember($event)" [chargedSSN]="chargedSSN"></app-form-members>
   </div>
   <div class="px-12 py-8">
-    <app-table-members #table [listMembers]="listMembers"></app-table-members>
+    <app-table-members #table></app-table-members>
   </div>
 </div>

@@ -1,27 +1,20 @@
-<table mat-table [dataSource]="listMembers" class="mat-elevation-z8">
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef> Last Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="address">
-    <th mat-header-cell *matHeaderCellDef> Address </th>
-    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="ssn">
-    <th mat-header-cell *matHeaderCellDef> SSN </th>
-    <td mat-cell *matCellDef="let element"> {{element.ssn}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<table class="table-auto shadow-md">
+  <thead class="bg-gray-200">
+    <tr>
+      <th class="py-4 text-yellow-800" *ngFor="let prop of displayedColumns">{{prop!='ssn'?(prop | titlecase):(prop|uppercase)}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of listMembers">
+      <td class="text-blue-500" >{{member.firstName}}</td>
+      <td class="text-blue-500" >{{member.lastName}}</td>
+      <td class="text-blue-500" >{{member.address}}</td>
+      <td class="text-blue-700">{{member.ssn}}</td>
+    </tr>
+  </tbody>
 </table>
+<ng-template #whileSearching>
+  <div class="flex justify-center pt-12">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

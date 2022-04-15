@@ -7,6 +7,7 @@ import { LoginComponent } from './views/login/login.component';
 import { AppRoutingModule } from './app.routing';
 import { AuthenticathedInterceptor } from './interceptors/auth/authenticathed.interceptor';
 import { CoreModule } from './core/core.module';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,11 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     CoreModule,
     AppRoutingModule,
+    MatSnackBarModule,
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass: AuthenticathedInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass: AuthenticathedInterceptor,multi:true},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [AppComponent]
 })
